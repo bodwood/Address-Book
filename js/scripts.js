@@ -40,10 +40,10 @@ AddressBook.prototype.deleteContact = function (id) {
 
 
 //Business Logic for Contact()
-function Contact(firstName, lastName, addressBook) {
+function Contact(firstName, lastName, phoneNumber) {
   this.firstName = firstName;
   this.lastName = lastName;
-  this.addressBook = addressBook;
+  this.phoneNumber = phoneNumber;
 }
 
 Contact.prototype.fullName = function () {
@@ -79,15 +79,25 @@ window.addEventListener("load", function () {
 });
 
 
-function handleNewContact(event){
+function handleNewContact(event) {
   event.preventDefault();
-const newFirstName = document.getElementById("newFirstName").value;
-const newLastName = document.getElementById("newLastName").value;
-const newPhoneNumber = document.getElementById("newPhoneNumber").value;
+  const newFirstName = document.getElementById("newFirstName").value;
+  const newLastName = document.getElementById("newLastName").value;
+  const newPhoneNumber = document.getElementById("newPhoneNumber").value;
+  const contanctInfo = document.getElementById("contactInfo");
+  const pFirstName = document.getElementById("pFirstName");
+  const pLastName = document.getElementById("pLastName");
+  const pPhoneNumber = document.getElementById("pPhoneNumber");
 
-let newContact = new Contact(newFirstName, newLastName, newPhoneNumber);
-addressBook.addContact(newContact);
-console.log(addressBook.contacts);
+  contanctInfo.setAttribute("class", "hidden");
 
+
+  let newContact = new Contact(newFirstName, newLastName, newPhoneNumber);
+  addressBook.addContact(newContact);
+
+  pFirstName.innerHTML = addressBook.contacts[1].firstName;
+  
+  console.log(addressBook.contacts[1].firstName);
+  contanctInfo.removeAttribute("class", "hidden");
 
 }
