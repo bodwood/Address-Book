@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/styles.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <title>Address Book</title>
 </head>
 <body>
   <form id="form">
@@ -17,11 +18,15 @@
     </label>
     <button type="submit">Submit</button>
   </form>
-  <div class="hidden" id="contactInfo">
-    <h3>Contact Info:</h3>
-    <p id="pFirstName"></p>
-    <p id="pLastName"></p>
-    <p id="pPhoneNumber"></p>
+  
+  <h3>Contact Info:</h3>
+  <div id="contacts">    
+  </div>
+
+  <div class="hidden" id="contactDetails">
+    <p>First Name: <span id="firstName"></span></p>
+    <p>Last Name: <span id="lastName"></span></p>
+    <p>Phone Number: <span id="phoneNumber"></span></p>
   </div>
   <script src="js/scripts.js"></script>
 </body>
