@@ -1,4 +1,5 @@
 //Business Logic for AddressBook()
+//function to store entires of contacts
 function AddressBook() {
   this.contacts = {};
   this.currentId = 0;
@@ -50,12 +51,8 @@ Contact.prototype.fullName = function () {
 };
 
 
-let addressBook = new AddressBook();
 
-let contact = new Contact("Ada", "Lovelace", "503-555-0100");
-let contact2 = new Contact("Grace", "Hopper", "503-555-0199");
-addressBook.addContact(contact);
-addressBook.addContact(contact2);
+
 
 //console.log(addressBook.contacts);
 //console.log();
@@ -64,8 +61,33 @@ addressBook.addContact(contact2);
 //console.log(contact.id);
 //console.log(contact2.id);
 ////console.log()
-console.log(addressBook.findContact(1));
+//console.log(addressBook);
 //console.log();
 //console.log(addressBook.deleteContact(1));
-console.log();
+//console.log();
 //console.log(addressBook);
+
+
+
+
+
+//UI Logic
+window.addEventListener("load", function () {
+  const form = document.getElementById("form");
+  addressBook = new AddressBook({});
+  form.addEventListener("submit", handleNewContact);
+});
+
+
+function handleNewContact(event){
+  event.preventDefault();
+const newFirstName = document.getElementById("newFirstName").value;
+const newLastName = document.getElementById("newLastName").value;
+const newPhoneNumber = document.getElementById("newPhoneNumber").value;
+
+let newContact = new Contact(newFirstName, newLastName, newPhoneNumber);
+addressBook.addContact(newContact);
+console.log(addressBook.contacts);
+
+
+}
