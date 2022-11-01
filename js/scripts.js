@@ -72,32 +72,55 @@ Contact.prototype.fullName = function () {
 
 
 //UI Logic
-window.addEventListener("load", function () {
-  const form = document.getElementById("form");
-  addressBook = new AddressBook({});
-  form.addEventListener("submit", handleNewContact);
-});
+let addressBook = new AddressBook();
 
+function listContacts(addressBookToDisplay){
+  let contactsDiv = document.getElementById("contacts")
+  contactsDiv.innerText = null;
+  const ul = document.createElement("ul");
+  Object.keys(addressBookToDisplay.contacts).forEach(function(key)  { 
+    const contact = addressBookToDisplay.findContact(key);
+    const li = document.createElement("li");
+    li.append(contact.fullName());
+    li.setAttribute("id", contact.id);
+    ul.append(li);
+  });
+  contactsDiv.append(ul);
+}
+
+function handleDelete(event){
+  addressBook.deleteContact(event.target.id);
+  document.querySelector("button.delete").removeAttribute("id");
+  document.getElementById("contactDetails").setAttribute("class", "hidden");
+  listContacts(addressBook);
+
+}
+
+function displayContactDetails(event){
+  const contact = addressBook.findContact(event.target.id);
+  document.getElementById("firstName").innerText = contact.firstName;
+  document.getElementById("lastName").innerText = contact.lastName;
+  document.getElementById("phoneNumber").innerText = contact.phoneNumber;
+  
+  document.querySelector("button.delete").setAttribute("id", contact.id);
+  
+  document.getElementById("contactDetails").removeAttribute("class");
+}
 
 function handleNewContact(event) {
   event.preventDefault();
   const newFirstName = document.getElementById("newFirstName").value;
   const newLastName = document.getElementById("newLastName").value;
   const newPhoneNumber = document.getElementById("newPhoneNumber").value;
-  const contanctInfo = document.getElementById("contactInfo");
-  const pFirstName = document.getElementById("pFirstName");
-  const pLastName = document.getElementById("pLastName");
-  const pPhoneNumber = document.getElementById("pPhoneNumber");
-
-  contanctInfo.setAttribute("class", "hidden");
-
-
   let newContact = new Contact(newFirstName, newLastName, newPhoneNumber);
   addressBook.addContact(newContact);
-
-  pFirstName.innerHTML = addressBook.contacts[1].firstName;
-  
-  console.log(addressBook.contacts[1].firstName);
-  contanctInfo.removeAttribute("class", "hidden");
-
+  listContacts(addressBook);
 }
+
+  window.addEventListener("load", function () {
+    const form = document.getElementById("form");
+    form.addEventListener("submit", handleNewContact);
+    const divContact = document.getElementById("contacts")
+    divContact.addEventListener("click", displayContactDetails);
+    document.querySelector("button.delete").addEventListener("click", handleDelete);
+  });
