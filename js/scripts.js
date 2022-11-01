@@ -40,7 +40,11 @@ AddressBook.prototype.deleteContact = function (id) {
 
 
 //Business Logic for Contact()
-function Contact(firstName, lastName, phoneNumber) {
+function Contact(firstName, lastName, phoneNumber, email1, email2, physicalAddress1, physicalAddress2) {
+  this.email1 = email1;
+  this.email2 = email2;
+  this.physicalAddress1 = physicalAddress1;
+  this.physicalAddress2 = physicalAddress2;
   this.firstName = firstName;
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
@@ -50,22 +54,6 @@ Contact.prototype.fullName = function () {
   return this.firstName + " " + this.lastName;
 };
 
-
-
-
-
-//console.log(addressBook.contacts);
-//console.log();
-//console.log(addressBook.contacts[2]);
-//console.log();
-//console.log(contact.id);
-//console.log(contact2.id);
-////console.log()
-//console.log(addressBook);
-//console.log();
-//console.log(addressBook.deleteContact(1));
-//console.log();
-//console.log(addressBook);
 
 
 
@@ -101,6 +89,10 @@ function displayContactDetails(event){
   document.getElementById("firstName").innerText = contact.firstName;
   document.getElementById("lastName").innerText = contact.lastName;
   document.getElementById("phoneNumber").innerText = contact.phoneNumber;
+  document.getElementById("email1").innerText = contact.email1;
+  document.getElementById("email2").innerText = contact.email2;
+  document.getElementById("physicalAddress1").innerText = contact.physicalAddress1;
+  document.getElementById("physicalAddress2").innerText = contact.physicalAddress2;
   
   document.querySelector("button.delete").setAttribute("id", contact.id);
   
@@ -112,7 +104,11 @@ function handleNewContact(event) {
   const newFirstName = document.getElementById("newFirstName").value;
   const newLastName = document.getElementById("newLastName").value;
   const newPhoneNumber = document.getElementById("newPhoneNumber").value;
-  let newContact = new Contact(newFirstName, newLastName, newPhoneNumber);
+  const newEmail1 = document.getElementById("newEmail1").value;
+  const newEmail2 = document.getElementById("newEmail2").value;
+  const newPhysicalAddress1 = document.getElementById("newPhysicalAddress1").value;
+  const newPhysicalAddress2 = document.getElementById("newPhysicalAddress2").value;
+  let newContact = new Contact(newFirstName, newLastName, newPhoneNumber, newEmail1, newEmail2, newPhysicalAddress1, newPhysicalAddress2);
   addressBook.addContact(newContact);
   listContacts(addressBook);
 }

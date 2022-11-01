@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
   <title>Address Book</title>
 </head>
 <body>
+  <div class="container">
+    <div class="jumbotron" style="text-align: center;">
   <form id="form">
     <label for="newFirstName">Enter first name: 
       <input type="text" name="newFirstName" id="newFirstName">
-    </label>
+    </label><br>
     <label for="newLastName">Enter last name: 
       <input type="text" name="newLastName" id="newLastName">
-    </label>
+    </label><br>
     <label for="newPhoneNumber">Enter phone number: 
       <input type="text" name="newPhoneNumber" id="newPhoneNumber">
-    </label>
+    </label><br>
+    <label for="newEmail1">Enter an email address: 
+      <input type="text" name="newEmail1" id="newEmail1">
+    </label><br>
+    <label for="newEmail2">Enter another email address: 
+      <input type="text" name="newEmail2" id="newEmail2">
+    </label><br>
+    <label for="newPhysicalAddress1">Enter your home address: 
+      <input type="text" name="newPhysicalAddress1" id="newPhysicalAddress1">
+    </label><br>
+    <label for="newPhysicalAddress2">Enter another home address: 
+      <input type="text" name="newPhysicalAddress2" id="newPhysicalAddress2">
+    </label><br>
     <button type="submit">Submit</button>
   </form>
   
@@ -27,8 +41,14 @@
     <p>First Name: <span id="firstName"></span></p>
     <p>Last Name: <span id="lastName"></span></p>
     <p>Phone Number: <span id="phoneNumber"></span></p>
+    <p>First email address: <span id="email1"></span></p>
+    <p>Second email address: <span id="email2"></span></p>
+    <p>Home Address: <span id="physicalAddress1"></span></p>
+    <p>Secondary Home Address: <span id="physicalAddress2"></span></p>
     <button class="delete" type="delete">Delete</button>
   </div>
   <script src="js/scripts.js"></script>
+  </div>
+  </div>
 </body>
 </html>
